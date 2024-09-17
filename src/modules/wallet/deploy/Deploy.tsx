@@ -313,14 +313,14 @@ export function Deploy() {
                 >
                   EXPLORE
                 </Components.Button>
-                {/* non-admin deploy unsafe for standalone node operation, required when testnet can propose its own blocks
+
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
                   onClick={deploy}
                 >
                   DEPLOY
                 </Components.Button>
-                  */}
+
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
                   onClick={admin_deploy}
