@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-base-50 text-base-700 dark:bg-base-900 dark:text-base-200">
+    <head>
+        <meta charset="utf-8" />
+
+        <base href="%BASE_URL%" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Gorki Wallet" />
+
+        <link rel="icon" href="/logo.svg" />
+        <title>Gorki Wallet</title>
+
+        <script>
+            function get_preferred_theme() {
+                let local_theme = localStorage.theme;
+                if (local_theme == "dark" || local_theme == "light") {
+                    return local_theme;
+                }
+
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    return "dark";
+                } else {
+                    return "light";
+                }
+            }
+
+            function set_theme(val, write_local_storage) {
+                if (write_local_storage) {
+                    if (val == null) {
+                        localStorage.removeItem("theme");
+                    } else {
+                        localStorage.theme = val;
+                    }
+                }
+
+                if (val == null) val = get_preferred_theme();
+
+                let de = document.documentElement;
+                if (val == "dark") {
+                    if (!de.classList.contains("dark")) {
+                        de.classList.add("dark");
+                        de.dispatchEvent(new CustomEvent("theme-changed", { detail: val }));
+                    }
+                } else {
+                    if (de.classList.contains("dark")) {
+                        de.classList.remove("dark");
+                        de.dispatchEvent(new CustomEvent("theme-changed", { detail: val }));
+                    }
+                }
+            }
+
+            set_theme(get_preferred_theme(), false);
+
+            let layout = "";
+            function set_layout(new_layout) {
+                let list = layout.split(" ");
+                for (let cls of list) if (cls)
+                    document.body.classList.remove(cls);
+                layout = new_layout;
+                document.body.className += " " + layout;
+            }
+        </script>
+    </head>
+    <body>
+        <img src="/icons.svg" class="hidden">
+        <div id="root" class="flex flex-col min-h-screen"></div>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <script type="module" src="/src/index.tsx"></script>
+    </body>
+</html>
+

@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Syne:wght@400..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    max-width: 100vw;
+    min-height: 100vh;
+    @apply font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 { @apply font-display }
+  h1 { @apply text-3xl }
+  h2 { @apply text-2xl }
+  h3 { @apply text-xl }
+  h4 { @apply text-lg font-bold }
+  h5 { @apply text-lg }
+  h6 { @apply text-base font-bold }
+
+  p.warning::before {
+    content: "⚠️ ";
+  }
+
+  label {
+    &:has(input, textarea, select) {
+      @apply relative flex gap-1 bg-transparent rounded-full border dark:border-base-50 border-base-950 px-4 py-2;
+    }
+
+    &:has(textarea) {
+      @apply rounded-2xl px-0 py-0;
+    }
+
+    &:has(select) {
+      @apply pl-0 pr-1 py-0 mt-2;
+    }
+
+    &[title]{
+      @apply mt-2;
+
+      &::before {
+        content: attr(title);
+        @apply absolute opacity-100 left-2 -top-2 dark:bg-base-900 bg-base-50 px-2 rounded-sm leading-none pointer-events-none transition-opacity;
+      }
+
+      &:has(input:placeholder-shown)::before {
+        @apply opacity-0;
+      }
+    }
+
+    &:focus-within { @apply bg-base-50/10 }
+
+    input, textarea, select {
+      @apply flex-1 bg-transparent dark:text-base-50 text-base-950 w-0 overflow-hidden;
+
+      &:focus-visible { outline: none }
+
+      &::placeholder {
+        @apply text-base-400 font-medium;
+      }
+    }
+
+    textarea { @apply px-4 py-2; }
+    select {
+      @apply min-w-40 w-full px-4 py-2;
+    }
+  }
+
+  select optgroup, select option {
+    @apply text-base-900 bg-base-50 dark:text-base-50 dark:bg-base-900;
+  }
+
+}
+
+.fade-enter, .fade-enter-active .fade-exit, .fade-exit-active {
+  @apply absolute inset-x-0 top-0;
+  transition: opacity 100ms;
+}
+
+.fade-enter { @apply opacity-0 }
+.fade-enter.fade-enter-active { @apply opacity-100 }
+.fade-exit { @apply opacity-100 }
+.fade-exit.fade-exit-active { @apply opacity-0 }
+
+
