@@ -312,9 +312,8 @@ export function Deploy() {
 
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
-                  onClick={() => {
-                    deploy();
-                  }}>
+                  onClick={deploy}
+                  >
                   ADMIN DEPLOY
                 </Components.Button>
                   
