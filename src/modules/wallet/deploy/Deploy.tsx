@@ -317,14 +317,14 @@ export function Deploy() {
                   }}>
                   ADMIN DEPLOY
                 </Components.Button>
-                  {/*
+                  
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
                   onClick={propose}
                 >
                   PROPOSE
                 </Components.Button>
-                */}
+                
               </>}
             />
           </div>
