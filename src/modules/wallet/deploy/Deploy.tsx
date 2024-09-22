@@ -139,7 +139,7 @@ export function Deploy() {
     set_msg(null);
     set_cost(null);
 
-    let res = await u.g.deploy_code(
+    let res = await u.g.admin_deploy_code(
       node_context,
       code.value,
       phlo_limit.value
@@ -312,17 +312,19 @@ export function Deploy() {
 
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
-                  onClick={deploy}
-                >
-                  DEPLOY
+                  onClick={() => {
+                    deploy();
+                  }}>
+                  ADMIN DEPLOY
                 </Components.Button>
-
+                  {/*
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
                   onClick={propose}
                 >
                   PROPOSE
                 </Components.Button>
+                */}
               </>}
             />
           </div>
