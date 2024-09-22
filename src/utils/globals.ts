@@ -40,18 +40,6 @@ export async function deploy_code(
 	return await (await rnode).deploy(url, user, code, phlo_limit, cancel);
 }
 
-/* export async function admin_deploy_code(
-	ctx: NodeContext,
-	code: string,
-	phlo_limit: number,
-	cancel?: ()=>boolean
-) {
-	if (!user) { return null; }
-	let deploy_url = ctx.get_validator_url();
-	let admin_url = ctx.get_admin_url();	
-	return await (await rnode).deploy(deploy_url, user, code, phlo_limit, cancel);
-}
-*/
 export async function propose(
 	ctx: NodeContext
 ) {
@@ -59,6 +47,7 @@ export async function propose(
 	let url = ctx.get_admin_url();
 	return await (await rnode).propose(url);
 }
+
 
 export async function explore_code(
 	ctx: NodeContext,
