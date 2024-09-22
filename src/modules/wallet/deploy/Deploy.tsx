@@ -159,7 +159,7 @@ export function Deploy() {
     set_op(u.OPERATION.INITIAL);
   }
 
-  async function admin_deploy() {
+  async function propose() {
     if (!u.g.user) { return null; }
     set_op(u.OPERATION.PENDING);
 
@@ -167,10 +167,8 @@ export function Deploy() {
     set_msg(null);
     set_cost(null);
 
-    let res = await u.g.admin_deploy(
-      node_context,
-      code.value,
-      phlo_limit.value
+    let res = await u.g.propose(
+      node_context
     );
 
     if (!res) {
@@ -182,8 +180,6 @@ export function Deploy() {
     }
 
     set_err(res?.error);
-    set_msg(res?.message);
-    set_cost(res?.cost);
     set_op(u.OPERATION.INITIAL);
   }
 
@@ -323,9 +319,9 @@ export function Deploy() {
 
                 <Components.Button
                   disabled={!code.value || phlo_limit.value <= 0}
-                  onClick={admin_deploy}
+                  onClick={propose}
                 >
-                  ADMIN DEPLOY
+                  PROPOSE
                 </Components.Button>
               </>}
             />

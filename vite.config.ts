@@ -36,7 +36,7 @@ function reindex_icons() {
 }
 
 export default defineConfig({
-    base: "https://knowit.systems/wallet/",
+    base: "",
     plugins: [
         reindex_icons(),
         tsconfigPaths(),

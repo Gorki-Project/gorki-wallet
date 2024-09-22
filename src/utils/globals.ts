@@ -40,15 +40,12 @@ export async function deploy_code(
 	return await (await rnode).deploy(url, user, code, phlo_limit, cancel);
 }
 
-export async function admin_deploy(
-	ctx: NodeContext,
-	code: string,
-	phlo_limit: number,
-	cancel?: ()=>boolean
+export async function propose(
+	ctx: NodeContext
 ) {
 	if (!user) { return null; }
 	let url = ctx.get_admin_url();
-	return await (await rnode).deploy(url, user, code, phlo_limit, cancel);
+	return await (await rnode).propose(url);
 }
 
 export async function explore_code(

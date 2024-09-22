@@ -181,3 +181,24 @@ export async function explore(
     }
 }
 
+export async function propose(
+    admin_url: string
+) {
+    try {
+        const rnode_http = (await rn).rnodeHttp;
+        const res = await rnode_http(admin_url, 'propose', {});
+
+        const expr = res.expr;
+        if (!expr) {
+            return { expr: null, error: "Unknown error" };
+        }
+
+        return { expr, error: null };
+
+    } catch (err) {
+        return {
+            expr: null,
+            error: String(err)
+        };
+    }
+}
